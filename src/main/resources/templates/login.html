@@ -11,7 +11,7 @@
     
     <p th:if="${loginError}" th:text="${loginError}" class="error"></p>
 
-    <form method="post">
+    <form th:action="@{/login}" method="post" th:object="${login}">
         <h2>The Game: Login</h2>
         <label for="username">Usuário:</label>
         <input type="text" id="username" placeholder="Insira o nome de usuário" name="username" required>

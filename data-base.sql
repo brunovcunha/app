@@ -1,5 +1,5 @@
 -- SQLBook: Code
--- Active: 1700597535888@@127.0.0.1@3306@thegame
+-- Active: 1700922240653@@127.0.0.1@3306@thegame
 
 create database thegame;
 use thegame;
@@ -143,3 +143,5 @@ cod_jogador int,
 cod_cenario int,
 foreign key(cod_jogador) references jogador (cod_jogador),
 foreign key(cod_cenario) references cenario (cod_cenario));
+
+SELECT * from login;
