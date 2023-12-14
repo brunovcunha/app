@@ -8,6 +8,9 @@
 <body>
 
 <div class="container">
+    
+    <p th:if="${loginError}" th:text="${loginError}" class="error"></p>
+
     <form method="post">
         <h2>The Game: Login</h2>
         <label for="username">Usuário:</label>
