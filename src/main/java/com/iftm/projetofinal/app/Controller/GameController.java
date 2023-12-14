@@ -17,6 +17,8 @@ public class GameController {
         mv.addObject("usuario", null);
         return mv;
     }
+    
+    @PostMapping
 
     @GetMapping("/menu")
     public ModelAndView menuPrincipal() {
@@ -24,6 +26,6 @@ public class GameController {
         mv.addObject("usuario", null);
         return mv;
     }
-    @PostMapping
+    
     
 }
