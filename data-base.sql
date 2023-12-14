@@ -1,5 +1,4 @@
--- SQLBook: Code
--- Active: 1700922240653@@127.0.0.1@3306@thegame
+
 create database thegame;
 use thegame;
 
@@ -49,7 +48,3 @@ foreign key(cod_cenario) references cenario (cod_cenario));
 -- SQLBook: Markup
 
 insert into login values ('admin', 'admin');
-
-alter table login DROP COLUMN cod_login;
-
-alter Table login MODIFY COLUMN login varchar(50) PRIMARY KEY;

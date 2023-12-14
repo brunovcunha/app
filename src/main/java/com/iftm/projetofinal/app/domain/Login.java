@@ -1,16 +1,12 @@
 package com.iftm.projetofinal.app.domain;
-
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Login {
-    @NonNull
     private String login;
-
-    @NonNull
     private String senha;
 }
