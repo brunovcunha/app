@@ -18,16 +18,15 @@ public class LoginDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    Logger logger = LoggerFactory.getLogger(LoginDao.class);
+    private final Logger logger = LoggerFactory.getLogger(LoginDao.class);
 
     public void salvar(Login login) {
-        String sql = "INSERT INTO login (usuario, senha) VALUES (?, ?)";
+        String sql = "INSERT INTO tb_login (usuario, senha) VALUES (?, ?)";
         jdbcTemplate.update(sql, login.getUsuario(), login.getSenha());
     }
 
-
     public Login getLogin(String user) {
-        String sql = "SELECT usuario, senha FROM login WHERE login = ?";
+        String sql = "SELECT usuario, senha FROM tb_login WHERE usuario = ?";
         try {
             Login login = jdbcTemplate.queryForObject(sql,
                 (res, rowNum) -> {
@@ -44,19 +43,15 @@ public class LoginDao {
             return null;
         }
     }
-    
 
     public List<Role> getRoles(String user) {
-        String sql = "select id,nome from tb_role where id in (select role_id from tb_role_user where usuario = ?)";
+        String sql = "SELECT id, nome FROM tb_role WHERE id IN (SELECT role_id FROM tb_role_user WHERE usuario = ?)";
         List<Role> roles = jdbcTemplate.query(sql,
-            (res, rowNum) -> {
-                return new Role(
-                    res.getInt("id"),
-                    res.getString("nome"));
-            },
-            new Object[] { user });
+            (res, rowNum) -> new Role(
+                res.getInt("id"),
+                res.getString("nome")),
+            user);
         logger.info("Roles para o usuário " + user + ": " + roles);
         return roles;
     }
-    
 }

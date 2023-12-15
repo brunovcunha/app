@@ -43,7 +43,7 @@ public class LoginController {
         return mv;
     }
 
-    @PostMapping("/login/entrar")
+    @PostMapping("/login/autenticar")
     public String login(HttpSession session, Login loginDigitado, Model model) {
 
         Login loginBanco = loginService.verificaSenha(loginDigitado);
