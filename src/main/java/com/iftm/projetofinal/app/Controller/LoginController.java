@@ -19,7 +19,7 @@ public class LoginController {
     @RequestMapping("/")
     public ModelAndView home() {
         ModelAndView mv = new ModelAndView("login");
-        mv.addObject("login", new Login());
+        mv.addObject("login", new Login("", ""));
         return mv;
     }
 

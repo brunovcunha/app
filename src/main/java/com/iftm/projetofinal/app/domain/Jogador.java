@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Jogador {
     private int cod_jogador;
     private String nickname;
-    private String email;
+    private String senha;
     private Date data_nasc;
     private int pontuacao;
 }
