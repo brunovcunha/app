@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Jogador {
     private int cod_jogador;
-    private String nickname;
+    private String apelido;
     private String senha;
     private Date data_nasc;
     private int pontuacao;

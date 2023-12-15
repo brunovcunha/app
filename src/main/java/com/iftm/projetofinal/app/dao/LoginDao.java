@@ -38,7 +38,7 @@ public class LoginDao {
                     login.setRoles(getRoles(user));
             return login;
         } catch (EmptyResultDataAccessException e) {
-            logger.info("User not found " + user + " message: " + e);
+            logger.info("Usuário não encontrado " + user + " message: " + e);
             return null;
         }
     }

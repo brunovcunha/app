@@ -10,7 +10,7 @@
 <body>
     <div class="common-container">
 
-        <form method="post" action="cadastro">
+        <form method="post" action="cadastro" th:object="${jogador}">
             <h2>The Game: Cadastro</h2>
             <label for="newUsername">Novo Usuário:</label>
             <input type="text" id="newUsername" placeholder="Insira o novo nome de usuário" name="newUsername" required>

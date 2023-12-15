@@ -21,23 +21,23 @@ public class GameDao {
         return database.query(sql, (res, rowNum) -> {
             return new Jogador(
                     res.getInt("cod_jogador"),
-                    res.getString("nickname"),
+                    res.getString("apelido"),
                     res.getString("senha"),
                     res.getDate("data_nasc"),
                     res.getInt("pontuacao"));
         });
     }
 
-    public List<Jogador> getJogador(String nickname) {
-        String sql = "select * from jogador where lower(nickname) like ?";
+    public List<Jogador> getJogador(String apelido) {
+        String sql = "select * from jogador where lower(apelido) like ?";
 
         return database.query(sql,
                 new BeanPropertyRowMapper<>(Jogador.class),
-                new Object[] { "%" + nickname + "%" });
+                new Object[] { "%" + apelido + "%" });
 
     }
 
-    private Jogador getJogador(int id) {
+    public Jogador getJogador(int id) {
         String sql = "select * from jogador where id = ?";
         
         List<Jogador> jogadores = database.query(sql,
@@ -52,19 +52,19 @@ public class GameDao {
     }
 
     public void cadastrarJogador(Jogador jogador) {
-        String sql = "insert into jogador(nickname, senha, data_nasc, pontuacao) values (?, ?, ?, 0)";
+        String sql = "insert into jogador(apelido, senha, data_nasc, pontuacao) values (?, ?, ?, 0)";
 
         database.update(sql, new Object[] {
-                jogador.getNickname(),
+                jogador.getApelido(),
                 jogador.getSenha(),
                 jogador.getData_nasc()});
     }
     
     public void atualizarJogador(Jogador jogador) {
-        String sql = "update jogador set nickname = ?, senha = ?, pontuacao = ? where cod_jogador = ?";
+        String sql = "update jogador set apelido = ?, senha = ?, pontuacao = ? where cod_jogador = ?";
 
         database.update(sql,
-                jogador.getNickname(),
+                jogador.getApelido(),
                 jogador.getSenha(),
                 jogador.getPontuacao(),
                 jogador.getCod_jogador());

@@ -11,8 +11,8 @@ create table login(
 
 create table jogador(
     cod_jogador bigint primary key auto_increment,
-    nickname varchar(50),
-    email varchar(50),
+    apelido varchar(50),
+    senha varchar(50),
     data_nasc date,
     pontuacao int
 );
