@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class Cenario {
     private int cod_cenario;
     private String caracteristicas;
-    private int qtde_min_pontos;
+    private int pontos_necessarios;
 }
