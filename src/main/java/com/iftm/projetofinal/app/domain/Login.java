@@ -9,11 +9,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Login {
     @NonNull
-    private String login;
+    private String usuario;
     @NonNull
     private String senha;
 
     private List<Role> roles;
-
-
+    
 }

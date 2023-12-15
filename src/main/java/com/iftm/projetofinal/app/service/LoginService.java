@@ -27,14 +27,16 @@ public class LoginService {
 
     public Login verificaSenha(Login loginDigitado) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        Login loginBanco = loginDao.getLogin(loginDigitado.getLogin());
+        Login loginBanco = loginDao.getLogin(loginDigitado.getUsuario());
         if (loginBanco != null) {
             if (encoder.matches(loginDigitado.getSenha(), loginBanco.getSenha())) {
+                logger.info("Senha válida para o login " + loginDigitado.getUsuario());
                 return loginBanco;
             } else {
-                logger.info("Senha não confere para o login " + loginDigitado.getLogin());
+                logger.info("Senha não confere para o login " + loginDigitado.getUsuario());
             }
         }
         return null;
     }
+    
 }

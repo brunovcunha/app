@@ -56,12 +56,12 @@ public class LoginController {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         for (Role role : loginBanco.getRoles()) {
-            logger.info("Registrando a role " + role.getNome() + " para o usuário logado " + loginBanco.getLogin());
+            logger.info("Registrando a role " + role.getNome() + " para o usuário logado " + loginBanco.getUsuario());
             authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getNome()));
         }
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                loginBanco.getLogin(),
+                loginBanco.getUsuario(),
                 loginBanco.getSenha(),
                 authorities);
 

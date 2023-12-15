@@ -21,36 +21,42 @@ public class LoginDao {
     Logger logger = LoggerFactory.getLogger(LoginDao.class);
 
     public void salvar(Login login) {
-        String sql = "INSERT INTO login (login, senha) VALUES (?, ?)";
-        jdbcTemplate.update(sql, login.getLogin(), login.getSenha());
+        String sql = "INSERT INTO login (usuario, senha) VALUES (?, ?)";
+        jdbcTemplate.update(sql, login.getUsuario(), login.getSenha());
     }
 
 
     public Login getLogin(String user) {
-        String sql = "SELECT login, senha FROM login WHERE login = ?";
+        String sql = "SELECT usuario, senha FROM login WHERE login = ?";
         try {
             Login login = jdbcTemplate.queryForObject(sql,
-                    (res, rowNum) -> {
-                        return new Login(
-                                res.getString("login"),
-                                res.getString("senha"));
-                    }, new Object[] { user });
-                    login.setRoles(getRoles(user));
+                (res, rowNum) -> {
+                    Login userLogin = new Login(
+                            res.getString("usuario"),
+                            res.getString("senha"));
+                    userLogin.setRoles(getRoles(user));
+                    return userLogin;
+                }, new Object[] { user });
+    
             return login;
         } catch (EmptyResultDataAccessException e) {
             logger.info("Usuário não encontrado " + user + " message: " + e);
             return null;
         }
     }
+    
 
     public List<Role> getRoles(String user) {
         String sql = "select id,nome from tb_role where id in (select role_id from tb_role_user where usuario = ?)";
-        return jdbcTemplate.query(sql,
-                (res, rowNum) -> {
-                    return new Role(
-                        res.getInt("id"),
-                        res.getString("nome"));
-                },
-                new Object[] { user });
+        List<Role> roles = jdbcTemplate.query(sql,
+            (res, rowNum) -> {
+                return new Role(
+                    res.getInt("id"),
+                    res.getString("nome"));
+            },
+            new Object[] { user });
+        logger.info("Roles para o usuário " + user + ": " + roles);
+        return roles;
     }
+    
 }
