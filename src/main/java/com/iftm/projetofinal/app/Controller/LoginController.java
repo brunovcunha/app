@@ -27,6 +27,9 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
+    
+    @Autowired
+    private MenuController menuController;
 
     @Autowired
     private LoginService loginService;
@@ -66,6 +69,6 @@ public class LoginController {
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
                 SecurityContextHolder.getContext());
 
-        return "redirect:/menu";
+                return menuController.getMenus(model,loginBanco.getRoles());
     }
 }

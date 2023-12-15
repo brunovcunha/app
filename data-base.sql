@@ -75,19 +75,12 @@ primary key(id)
 
 insert into tb_role(nome) values ('ADMIN');
 insert into tb_role(nome) values ('USER');
-
 create table tb_role_user (
-
 usuario varchar(255) not null,
-
 role_id integer not null,
-
 primary key(usuario,role_id),
-
-foreign key(usuario) references tb_login(usuario),
-
+foreign key(usuario) references login(login),
 foreign key(role_id) references tb_role(id)
-
 );
 
 insert into tb_role_user(usuario,role_id) values ('teste',1);

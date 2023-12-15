@@ -14,4 +14,6 @@ public class Login {
     private String senha;
 
     private List<Role> roles;
+
+
 }
